@@ -43,6 +43,10 @@ function App() {
               content:
                 "You are a text adventure game. Respond with short, atmospheric descriptions of what happens based on the player's actions. Keep responses under 3 sentences. Use vivid, sci-fi horror imagery.",
             },
+            ...gameState.history.map((msg) => ({
+              role: msg.startsWith(">>") ? "user" : "system",
+              content: msg,
+            })),
             {
               role: "user",
               content: gameState.currentPrompt,
