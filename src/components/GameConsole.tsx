@@ -20,7 +20,7 @@ export const GameConsole: React.FC<GameConsoleProps> = ({
   const consoleEndRef = useRef<HTMLDivElement>(null);
   const initialPlaceholder = apiKey
     ? "What do you do?"
-    : "Please insert API key (top left corner button)";
+    : "Please insert API key (top right button)";
 
   useEffect(() => {
     consoleEndRef.current?.scrollIntoView({ behavior: "smooth" });
