@@ -1,5 +1,6 @@
-import React from "react";
-import { Menu as MenuIcon, X } from "lucide-react";
+import React, { useState } from "react";
+import { Menu as MenuIcon, X, ListRestart } from "lucide-react";
+import { useWizard } from "react-use-wizard";
 
 interface MenuProps {
   isOpen: boolean;
@@ -12,11 +13,14 @@ export const Menu: React.FC<MenuProps> = ({
   onToggle,
   onSetApiKey,
 }) => {
-  const [apiKey, setApiKey] = React.useState("");
+  const { previousStep } = useWizard();
+
+  const [apiKey, setApiKey] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSetApiKey(apiKey);
+    localStorage.setItem("apiKey", apiKey);
   };
 
   return (
@@ -30,7 +34,13 @@ export const Menu: React.FC<MenuProps> = ({
 
       {isOpen && (
         <div className="absolute right-0 mt-2 w-80 bg-black border border-green-400 shadow-lg p-4">
-          <h2 className="text-green-400 text-xl mb-4 font-vt323">Settings</h2>
+          <div className="flex justify-between">
+            <h2 className="text-green-400 text-xl mb-4 font-vt323">Settings</h2>
+            <ListRestart
+              className="hover:cursor-pointer"
+              onClick={previousStep}
+            />
+          </div>
           <form onSubmit={handleSubmit}>
             <label className="block text-green-400 mb-2 font-vt323">
               OpenAI API Key
