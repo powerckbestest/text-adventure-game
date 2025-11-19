@@ -20,3 +20,5 @@ The app provides the user with unique text scenarios that evolve based on the us
 - **Vite** — for fast project build and development.
 - **Axios** — for sending requests to the OpenAI API.
 - **OpenAI API** — for text generation.
+
+- Inspired by Rick and Morty series
